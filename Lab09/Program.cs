@@ -37,25 +37,76 @@ namespace Lab09
                 newStudent = Student.ContinueTheProgram(newStudentAnswer);
        
                 
-
+                bool validInput = true;
                 studentIndex = studentNumber - 1;
                 int studentNum = studentList.Count() + 1;
                 string studentNumString = studentNum.ToString();
-                Console.WriteLine("What is the student's first name? ");
-                string firstName = Console.ReadLine();
-                Console.WriteLine("What is the student's last name? ");
-                string lastName = Console.ReadLine();
-                Console.WriteLine("What is the student's hometown?");
-                string homeTown = Console.ReadLine();
-                Console.WriteLine("What is the student's age? ");
-                string age = Console.ReadLine();
+                string firstName = "";
+                do
+                {
+                    Console.WriteLine("What is the student's first name? ");
+                    firstName = Console.ReadLine();
+                    if (firstName.Length > 0)
+                    {
+                        validInput = true;
+                    }
+                    else
+                    {
+                        validInput = false;
+                    }
+                } while (validInput == false);
+
+                string lastName = "";
+                do
+                {
+                    Console.WriteLine("What is the student's last name? ");
+                    lastName = Console.ReadLine();
+                    if (lastName.Length > 0)
+                    {
+                        validInput = true;
+                    }
+                    else
+                    {
+                        validInput = false;
+                    }
+                } while (validInput == false);
+
+                string homeTown = "";
+                do
+                {
+                    Console.WriteLine("What is the student's hometown? ");
+                    homeTown = Console.ReadLine();
+                    if (homeTown.Length > 0)
+                    {
+                        validInput = true;
+                    }
+                    else
+                    {
+                        validInput = false;
+                    }
+                } while (validInput == false);
+
+                string age = "";
+                do
+                {
+                    Console.WriteLine("What is the student's age? (range from 1-100) ");
+                    age = Console.ReadLine();
+                    validInput = int.TryParse(age, out int ageNum);
+                    if (ageNum > 0 && ageNum < 100)
+                    {
+                        validInput = true;
+                    }
+                    else
+                    {
+                        validInput = false;
+                    }
+                } while (validInput == false);
 
                 studentList.Add(new Student(studentNumString, firstName, lastName, homeTown, age));
                 int newLengthOfList = studentList.Count();
                 studentNumber = Student.GetStudentNumber(newLengthOfList);
                 studentIndex = studentNumber - 1;
                 
-
             } while (newStudent);
             Console.ReadKey();
 
