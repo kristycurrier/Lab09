@@ -19,7 +19,6 @@ namespace Lab09
 
             do
             {
-
                 do
                 {
                     studentList[studentIndex].PrintIntroQuestion(studentList, studentIndex);
@@ -35,7 +34,11 @@ namespace Lab09
                 string newStudentAnswer = Console.ReadLine();
 
                 newStudent = Student.ContinueTheProgram(newStudentAnswer);
-       
+                if (newStudent == false)
+                {
+                    Console.WriteLine("Goodbye!");
+                    break;
+                }
                 
                 bool validInput = true;
                 studentIndex = studentNumber - 1;
@@ -102,7 +105,22 @@ namespace Lab09
                     }
                 } while (validInput == false);
 
-                studentList.Add(new Student(studentNumString, firstName, lastName, homeTown, age));
+                string color = "";
+                do
+                {
+                    Console.WriteLine("What is the student's favorite color? ");
+                    color = Console.ReadLine();
+                    if (color.Length > 0)
+                    {
+                        validInput = true;
+                    }
+                    else
+                    {
+                        validInput = false;
+                    }
+                } while (validInput == false);
+
+                studentList.Add(new Student(studentNumString, firstName, lastName, homeTown, age, color));
                 int newLengthOfList = studentList.Count();
                 studentNumber = Student.GetStudentNumber(newLengthOfList);
                 studentIndex = studentNumber - 1;
@@ -110,9 +128,6 @@ namespace Lab09
             } while (newStudent);
             Console.ReadKey();
 
-        }
-
-
-        
+        }      
     }
 }
