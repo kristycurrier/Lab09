@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab09
 {
+    // James - Sweet, not only are you using a seperate class but you are also storing that class in a seperate file. 
     class Student
     {
         private string _studentNumber;
@@ -27,11 +28,15 @@ namespace Lab09
 
         public static int GetStudentNumber(int lengthOfList)
         {
+            // James - I like that this is being seperated into a seperate method, though I don't know if the Student 
+            // class really cares about this information.
             Console.WriteLine($"Welcome to our C# class. Which student would you " +
                  $"like to learn about? (enter a number 1- {lengthOfList}): ");
             string studentNumberInput = Console.ReadLine();
             bool realNumber = int.TryParse(studentNumberInput, out int studentNumber);
 
+            // James - nice way of validating, though I would maybe seperate all of your validation into a 
+            // seperate Validation class instead.
             while (realNumber == false || studentNumber<1 || studentNumber > lengthOfList)
             {
                 Console.WriteLine($"Please enter a number between 1 and {lengthOfList}: ");
@@ -42,7 +47,9 @@ namespace Lab09
         }
 
         public void PrintIntroQuestion(List<Student> studentData, int studentIndex)
-        {
+        {   
+            // James - Same as the last method, I like that this is in it's own method, but I would maybe
+            // put this in a differnet class. 
             string studentNumber = studentData[studentIndex]._studentNumber;
             string firstName = studentData[studentIndex]._firstName;
             string lastName = studentData[studentIndex]._lastName;
@@ -51,6 +58,7 @@ namespace Lab09
 
         public static void PrintExtraInfo(string info, List<Student> studentData, int studentIndex)
         {
+                // James - yep good stuff, maybe in a different class though.
                 bool validInput = false;
                 while (validInput == false)
                 {
@@ -132,6 +140,9 @@ namespace Lab09
 
         public static List<Student> GetDefaults()
         {
+            // James - pretty cool method, although I may put it in a differnet class altogether but I'm not sure if this really relates 
+            // to a single student, but I still like this method, cool stuff.  I would also rename it to like 
+            // GetDefaultStudents just to make it more clear what this is doing.
             List<Student> studentData = new List<Student>();
             studentData.Add(new Student("1", "Bob", "Smith", "Detroit, MI", "20", "blue"));
             studentData.Add(new Student("2", "Cody", "Jenkins", "Royal Oak, MI", "28", "red"));

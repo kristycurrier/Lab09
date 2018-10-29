@@ -17,6 +17,7 @@ namespace Lab09
             var continueProgram = true;
             bool newStudent = true;
 
+            // James - double dos?
             do
             {
                 do
