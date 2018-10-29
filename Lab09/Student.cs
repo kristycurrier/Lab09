@@ -49,26 +49,28 @@ namespace Lab09
 
         public static void PrintExtraInfo(string info, List<Student> studentData, int studentIndex)
         {
-            bool validInput = false;
-            while (validInput == false)
-            {
-                if (info.Equals("hometown", StringComparison.OrdinalIgnoreCase))
+                bool validInput = false;
+                while (validInput == false)
                 {
-                    Student.PrintHomeTown(studentData, studentIndex);
-                    validInput = true;
+                    if (info.Equals("hometown", StringComparison.OrdinalIgnoreCase))
+                    {
+                        Student.PrintHomeTown(studentData, studentIndex);
+                        validInput = true;
+                        break;
+                    }
+                    else if (info.Equals("age", StringComparison.OrdinalIgnoreCase))
+                    {
+                        Student.PrintAge(studentData, studentIndex);
+                        validInput = true;
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Sorry, I didn't get that.  Please enter age or hometown: ");
+                        validInput = false;
+                    }
+                    info = Console.ReadLine();
                 }
-                else if (info.Equals("age", StringComparison.OrdinalIgnoreCase))
-                {
-                    Student.PrintAge(studentData, studentIndex);
-                    validInput = true;
-                }
-                else
-                {
-                    Console.WriteLine("Sorry, I didn't get that.  Please enter age or hometown: ");
-                    validInput = false;
-                }
-                info = Console.ReadLine();
-            }
         }
 
         public static void PrintHomeTown(List<Student> studentData, int studentIndex)
@@ -83,6 +85,34 @@ namespace Lab09
             string firstName = studentData[studentIndex]._firstName;
             string age = studentData[studentIndex]._age;
             Console.WriteLine($"{firstName} is {age} years old. Would you like to know more? (y/n)");
+        }
+
+        public static bool ContinueTheProgram(string yesNoAnswer)
+        {
+            bool repeatTheProgram = true;
+            bool validInput = false;
+            do
+            {
+               // yesNoAnswer = Console.ReadLine();
+                if (yesNoAnswer.Equals("y", StringComparison.OrdinalIgnoreCase))
+                {
+                    repeatTheProgram = true;
+                    validInput = true;
+                }
+                else if (yesNoAnswer.Equals("n", StringComparison.OrdinalIgnoreCase))
+                {
+                    Console.WriteLine("Thanks! Goodbye!");
+                    repeatTheProgram = false;
+                    validInput = true;
+                }
+                else
+                {
+                    Console.WriteLine("That isn't a valid input, type y for yes or n for no.");
+                    validInput = false;
+                }
+            } while (validInput == false);
+
+            return repeatTheProgram;
         }
 
         public static List<Student> GetDefaults()

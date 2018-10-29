@@ -10,21 +10,23 @@ namespace Lab09
     {
         static void Main(string[] args)
         {
-            var studentNumber = Student.GetStudentNumber();
 
+            var studentNumber = Student.GetStudentNumber();
             int studentIndex = studentNumber - 1;
             var studentList = Student.GetDefaults();
+            var continueProgram = true;
 
-            studentList[studentIndex].PrintIntroQuestion(studentList, studentIndex);
+            do
+            {
+                studentList[studentIndex].PrintIntroQuestion(studentList, studentIndex);
 
-            string input = Console.ReadLine();
+                string input = Console.ReadLine();
+                Student.PrintExtraInfo(input, studentList, studentIndex);
+                string yesNoAnswer = Console.ReadLine();
+                continueProgram = Student.ContinueTheProgram(yesNoAnswer);
 
-            Student.PrintExtraInfo(input, studentList, studentIndex);
-            string yesNoAnswer = Console.ReadLine();
+            } while (continueProgram==true);
 
-
-            //studentList[studentIndex].PrintHomeTown(studentList, studentIndex); 
-            //studentList[studentIndex].PrintAge(studentList, studentIndex);
             Console.ReadKey();
 
         }
