@@ -23,16 +23,16 @@ namespace Lab09
             _age = age;
         }
 
-        public static int GetStudentNumber()
+        public static int GetStudentNumber(int lengthOfList)
         {
-            Console.WriteLine("Welcome to our C# class. Which student would you " +
-                 "like to learn about? (enter a number 1-20): ");
+            Console.WriteLine($"Welcome to our C# class. Which student would you " +
+                 $"like to learn about? (enter a number 1- {lengthOfList}): ");
             string studentNumberInput = Console.ReadLine();
             bool realNumber = int.TryParse(studentNumberInput, out int studentNumber);
 
-            while (realNumber == false || studentNumber<1 || studentNumber > 20)
+            while (realNumber == false || studentNumber<1 || studentNumber > lengthOfList)
             {
-                Console.WriteLine("Please enter a number between 1 and 20: ");
+                Console.WriteLine($"Please enter a number between 1 and {lengthOfList}: ");
                 studentNumberInput = Console.ReadLine();
                 realNumber = int.TryParse(studentNumberInput, out studentNumber);
             }
@@ -101,7 +101,6 @@ namespace Lab09
                 }
                 else if (yesNoAnswer.Equals("n", StringComparison.OrdinalIgnoreCase))
                 {
-                    Console.WriteLine("Thanks! Goodbye!");
                     repeatTheProgram = false;
                     validInput = true;
                 }
@@ -113,6 +112,7 @@ namespace Lab09
             } while (validInput == false);
 
             return repeatTheProgram;
+            
         }
 
         public static List<Student> GetDefaults()
